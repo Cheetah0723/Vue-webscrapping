@@ -29,16 +29,20 @@
       <h4>Home Team</h4>
       <table class="table">
         <tr>
-          <th>Player Name</th>
-          <th>Guessing Score</th>
-        </tr>
-        <tr v-for="(player, index) in homeTeam.players" :key="index">
-          <td>{{player['player-name']}}</td>
-          <td>{{player['guessing-score']['score']}}</td>
+          <th colspan="3">Total Players G-Score</th>
+          <td>{{ getPlayersTotalScore('home') }}</td>
         </tr>
         <tr>
-          <th>Total Score</th>
-          <td>{{getPlayersTotalScore('home')}}</td>
+          <th>#</th>
+          <th colspan="2">Player Name</th>
+          <th>Guessing Score</th>
+          <th>Boost</th>
+        </tr>
+        <tr v-for="(player, index) in homeTeam.players" :key="index">
+          <td>{{index + 1}}</td>
+          <td colspan="2">{{player['player-name']}}</td>
+          <td>{{player['guessing-score']['score']}}</td>
+          <td>{{player['guessing-score']['boost']}}</td>
         </tr>
       </table>
     </div>
@@ -46,16 +50,20 @@
       <h4>Away Team</h4>
       <table class="table">
         <tr>
-          <th>Total Players G-Score</th>
-          <td>{{getPlayersTotalScore('away')}}</td>
+          <th colspan="3">Total Players G-Score</th>
+          <td>{{getPlayersTotalScore('away') }}</td>
         </tr>
         <tr>
-          <th>Player Name</th>
+          <th>#</th>
+          <th colspan="2">Player Name</th>
           <th>Guessing Score</th>
+          <th>Boost</th>
         </tr>
         <tr v-for="(player, index) in awayTeam.players" :key="index">
-          <td>{{player['player-name']}}</td>
+          <td>{{index + 1 }}</td>
+          <td colspan="2">{{player['player-name']}}</td>
           <td>{{player['guessing-score']['score']}}</td>
+          <td>{{player['guessing-score']['boost']}}</td>
         </tr>
 
       </table>
@@ -65,6 +73,7 @@
 
 <script>
 import axios from 'axios'
+
 export default {
   sum: 10,
   name: 'player-list',
@@ -103,8 +112,14 @@ export default {
       for (const player of team.players) {
         total = total + player['guessing-score'].score
       }
-      return total
+      return total.toFixed(5)
     }
+  },
+  filters: {
+    myDecimal: function (value) {
+      return value.toFixed(2)
+    }
+
   }
 }
 </script>
