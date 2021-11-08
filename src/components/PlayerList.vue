@@ -41,7 +41,7 @@
         <tr v-for="(player, index) in homeTeam.players" :key="index">
           <td>{{index + 1}}</td>
           <td colspan="2">{{player['player-name']}}</td>
-          <td>{{player['guessing-score']['score']}}</td>
+          <td>{{player['guessing-score']['score'].toFixed(5)}}</td>
           <td>{{player['guessing-score']['boost']}}</td>
         </tr>
       </table>
@@ -62,7 +62,7 @@
         <tr v-for="(player, index) in awayTeam.players" :key="index">
           <td>{{index + 1 }}</td>
           <td colspan="2">{{player['player-name']}}</td>
-          <td>{{player['guessing-score']['score']}}</td>
+          <td>{{player['guessing-score']['score'].toFixed(5)}}</td>
           <td>{{player['guessing-score']['boost']}}</td>
         </tr>
 
