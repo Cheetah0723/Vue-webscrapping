@@ -1,4 +1,4 @@
-# vue-xml
+# vue-apis
 
 ## Project setup
 ```
