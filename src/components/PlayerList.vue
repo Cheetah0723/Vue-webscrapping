@@ -56,14 +56,24 @@
         <tr>
           <th>#</th>
           <th colspan="2">Player Name</th>
-          <th>Guessing Score</th>
+          <th>Factors</th>
           <th>Boost</th>
+          <th>Guessing Score</th>
         </tr>
         <tr v-for="(player, index) in awayTeam.players" :key="index">
           <td>{{index + 1 }}</td>
           <td colspan="2">{{player['player-name']}}</td>
-          <td>{{player['guessing-score']['score'].toFixed(5)}}</td>
+          <td>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>{{player['algorithms']['home-away-weighting']['scaling-factor']}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
           <td>{{player['guessing-score']['boost']}}</td>
+          <td>{{player['guessing-score']['score'].toFixed(5)}}</td>
         </tr>
 
       </table>
@@ -114,12 +124,6 @@ export default {
       }
       return total.toFixed(5)
     }
-  },
-  filters: {
-    myDecimal: function (value) {
-      return value.toFixed(2)
-    }
-
   }
 }
 </script>
